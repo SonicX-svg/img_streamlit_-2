@@ -1,5 +1,5 @@
 import streamlit as st
-import tensorflow as tf
+import tensorflow 
 import io
 from PIL import Image
 from tensorflow.keras.applications import EfficientNetB0
