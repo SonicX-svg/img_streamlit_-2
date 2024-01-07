@@ -15,7 +15,20 @@ def print_predictions(preds):
     classes = decode_predictions(preds, top=3)[0]
     for cl in classes:
         st.write(cl[1], cl[2])
-        
+def load_image():
+    """Создание формы для загрузки изображения"""
+    # Форма для загрузки изображения средствами Streamlit
+    uploaded_file = st.file_uploader(
+        label='Выберите изображение для распознавания')
+    if uploaded_file is not None:
+        # Получение загруженного изображения
+        image_data = uploaded_file.getvalue()
+        # Показ загруженного изображения на Web-странице средствами Streamlit
+        st.image(image_data)
+        # Возврат изображения в формате PIL
+        return Image.open(io.BytesIO(image_data))
+    else:
+        return None        
         
         
 # Загружаем предварительно обученную модель
