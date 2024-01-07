@@ -1,5 +1,12 @@
-from tensorflow.keras.applications import EfficientNetB0
 import streamlit as st
+import io
+from PIL import Image
+from tensorflow.keras.applications import EfficientNetB0
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.applications.efficientnet import preprocess_input
+from tensorflow.keras.applications.efficientnet import decode_predictions
+import numpy as np
+
 @st.cache(allow_output_mutation=True)
 def load_model():
      model = EfficientNetB0(weights='imagenet')
@@ -7,7 +14,7 @@ def load_model():
      
 def preprocess_image(img):
     x = image.img_to_array(img) #преобразование изображения в нампай массив
-    x = np.expand_dmis(x, axis=0)
+    x = np.expand_dims(x, axis=0)
     x = preprocess_input(x) # преобразует значения пикселей изображения в значения от -1 до 1
     return x
     
